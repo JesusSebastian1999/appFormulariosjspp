@@ -1,0 +1,15 @@
+{
+ "short_name": "appformulariosjspp",
+ "name": "Ejemplo de PWA",
+ "start_url": "/index.html",
+ "display": "standalone",
+ "background_color": "#152370",
+ "theme_color": "#ffcb2d",
+ "icons": [
+   {
+     "src": "img/firebase.png",
+     "sizes": "1024x1024",
+     "type": "image/png"
+   }
+ ]
+}

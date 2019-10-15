@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+   
+    <meta charset="UTF-8">
+    <title>Suma</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+       body {font-family: sans-serif}
+    </style>
+    <!-- Ícono para la página web. -->
+    <link rel="icon" sizes="32x32" href="favicon.ico">
+ 
+    <!-- Color de la barra de navegación de Chrome. -->
+    <meta name="theme-color" content="#ff2d42">
+ 
+    <!-- Configuración de la Web App Chrome y Microsoft Store. -->
+    <link rel="manifest" href="manifest.json">
+ 
+    <!-- Configuración para del acceso directo en Windows Edge/IE -->
+    <!-- Icono -->
+    <meta name="msapplication-TileImage" content="img/firebase.png">
+    <!-- Color de tile. -->
+    <meta name="msapplication-TileColor" content="#152370">
+ 
+    <!-- Configuración para Web Clip en Safari. -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="img/firebase.png">
+    <link rel="apple-touch-startup-image" sizes="1024x1024"
+      href="img/firebase.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ 
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/6.0.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/6.0.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+  </head>
+  <body>
+    <h1>Suma</h1>
+    <form name="vista">
+      <p>
+        <input type="number" id="num1" placeholder="Numero 1"
+                accesskey="1">
+      </p>
+      <p>
+        <input type="number" id="num2" placeholder="Numero 2"
+                accesskey="2">
+      </p>
+      <p>
+        <output id="respuesta"></output>
+      </p>
+      <p>
+        <button type="submit">Sumar</button>
+      </p>
+    </form>
+    <script>
+      "use strict";
+      const vista = document.vista;
+      const resp = document.querySelector(`#respuesta`);
+      document.vista.addEventListener("submit", suma);
+      function suma(evt) {
+        evt.preventDefault();
+          const num1 = vista.num1.valueAsNumber;
+          const num2 = vista.num2.valueAsNumber;
+          if(!num1){
+            alert("Ingresa el primer numero");
+          }else if(!num2){
+            alert("Ingresa el segundo numero");
+          }else if(!num2&&!num2){
+            
+          }else{
+            const suma = num1+num2;
+          resp.value= `${suma}`;
+          }
+          
+      }
+
+      async function registraServiceWorker() {
+      if ("serviceWorker" in navigator) {
+        try {
+          const registro = await navigator.serviceWorker.register("sw.js");
+          console.log("Service Worker registrado.");
+          console.log(registro);
+        } catch (e) {
+          muestraError(e);
+        }
+      }
+    }
+
+    registraServiceWorker();
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        let app = firebase.app();
+        let features = ['auth', 'database', 'messaging', 'storage']
+          .filter(feature => typeof app[feature] === 'function');
+        document.vista.mensaje.value =
+          `Firebase SDK cargó con: ${features.join(', ')}`;
+      } catch (e) {
+        console.log(e);
+        document.vista.mensaje.value =
+          'Error cargando Firebase SDK. Revisa la consola del navegador.';
+      }
+    });
+    </script>
+    <footer>
+        <small>Copyright &copy;2019 Paez Paredes Jesus Sebastian</small>
+    </footer>
+  </body>
+</html>
