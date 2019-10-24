@@ -104,8 +104,6 @@
         let app = firebase.app();
         let features = ['auth', 'database', 'messaging', 'storage']
           .filter(feature => typeof app[feature] === 'function');
-        document.vista.mensaje.value =
-          `Firebase SDK cargó con: ${features.join(', ')}`;
       } catch (e) {
         console.log(e);
       }
